@@ -40,13 +40,34 @@ int main(int argc, char *argv[])
   shared_stuff = (struct shared_used_st *)shared_memory;
   shared_stuff->written_by_you = 0;
 
+  // Create semaphores onto the shared memory.
+  sem_id_s = semget((key_t)1231, 1, 0666 | IPC_CREAT);
+  sem_id_n = semget((key_t)1232, 1, 0666 | IPC_CREAT);
+  sem_id_e = semget((key_t)1233, 1, 0666 | IPC_CREAT);
+
+  // Initialize semaphores S, N, E.
+  if (!set_semvalue(sem_id_s, 1)) {
+    fprintf(stderr, "Failed to initialize semaphore.\n");
+    exit(EXIT_FAILURE);
+  }
+
+  if (!set_semvalue(sem_id_n, 0)) {
+    fprintf(stderr, "Failed to initialize semaphore.\n");
+    exit(EXIT_FAILURE);
+  }
+
+  if (!set_semvalue(sem_id_e, CBUFFER_SZ)) {
+    fprintf(stderr, "Failed to initialize semaphore.\n");
+    exit(EXIT_FAILURE);
+  }
+
   // Implement consumer logic here.
   while(running) {
     if (shared_stuff->written_by_you) {
       printf("From producer: %s", shared_stuff->cbuffer[0].string);
       sleep(rand() % 4); // make the other process wait for us
       shared_stuff->written_by_you = 0;
-      if (strncmp(shared_stuff->cbuffer[0].string, "end", 3) == 0) {
+      if (strncmp(shared_stuff->cbuffer[0].stringm, "end", 3) == 0) {
         running = 0;
       }
     }

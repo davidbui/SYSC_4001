@@ -11,17 +11,6 @@
 
 #include "helper.h"
 
-// Global variables.
-int sem_id_s; // Provides mutual exclusion on buffer access.
-int sem_id_n; // Synchronize producer and consumer on the number of consumable items.
-int sem_id_e; // Synchronize producer and consumer on the number of empty spaces.
-
-// Semaphore function prototypes.
-int set_semvalue(int sem_id, int init_value);
-void del_semvalue(int sem_id);
-int semaphore_w(int sem_id);
-int semaphore_s(int sem_id);
-
 // Main program start.
 int main(int argc, char *argv[])
 {
@@ -52,9 +41,9 @@ int main(int argc, char *argv[])
   shared_stuff = (struct shared_used_st *)shared_memory;
 
   // Create semaphores onto the shared memory.
-  sem_id_s = semget((key_t)1231, 1, 0666 | IPC_CREAT);
-  sem_id_n = semget((key_t)1232, 1, 0666 | IPC_CREAT);
-  sem_id_e = semget((key_t)1233, 1, 0666 | IPC_CREAT);
+  sem_id_s = semget((key_t)SEM_ID_S, 1, 0666 | IPC_CREAT);
+  sem_id_n = semget((key_t)SEM_ID_N, 1, 0666 | IPC_CREAT);
+  sem_id_e = semget((key_t)SEM_ID_E, 1, 0666 | IPC_CREAT);
 
   // Initialize semaphores S, N, E.
   if (!set_semvalue(sem_id_s, 1)) {
@@ -106,56 +95,4 @@ int main(int argc, char *argv[])
 */
 
   return 0;
-}
-
-// Semaphore function prototypes.
-int set_semvalue(int sem_id, int init_value)
-{
-  union semun sem_union;
-
-  sem_union.val = 1;
-  if (semctl(sem_id, 0, SETVAL, sem_union) == -1) {
-    return 0;
-  }
-  return 1;
-}
-
-void del_semvalue(int sem_id)
-{
-  union semun sem_union;
-
-  sem_union.val = 1;
-  if (semctl(sem_id, 0, IPC_RMID, sem_union) == -1) {
-    fprintf(stderr, "Failed to delete semaphore.\n");
-  }
-}
-
-int semaphore_w(int sem_id)
-{
-  struct sembuf sem_b;
-
-  sem_b.sem_num = 0;
-  sem_b.sem_op = -1; 
-  sem_b.sem_flg = SEM_UNDO;
-
-  if (semop(sem_id, &sem_b, 1) == -1) {
-    fprintf(stderr, "semaphore_w failed.\n");
-    return 0;
-  }
-  return 1;
-}
-
-int semaphore_s(int sem_id)
-{
-  struct sembuf sem_b;
-
-  sem_b.sem_num = 0;
-  sem_b.sem_op = 1; 
-  sem_b.sem_flg = SEM_UNDO;
-
-  if (semop(sem_id, &sem_b, 1) == -1) {
-    fprintf(stderr, "semaphore_s failed.\n");
-    return 0;
-  }
-  return 1;
 }
