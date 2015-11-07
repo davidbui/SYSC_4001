@@ -8,11 +8,13 @@
 
 #include <sys/shm.h>
 #include <sys/sem.h>
+#include <sys/stat.h> // stat().
+#include <fcntl.h>    // open().
 
 // Constants.
 #define CBUFFER_SZ 100
 #define BUFSIZE 128
-#define TEXT_SZ 20
+#define TEXT_SZ 25
 #define SEM_ID_S 1234
 #define SEM_ID_N 1235
 #define SEM_ID_E 1236
@@ -27,6 +29,7 @@ struct shared_used_st {
   int written_by_you;
   int in;
   int out;
+  int file_size;
   buffer cbuffer[CBUFFER_SZ];
 };
 

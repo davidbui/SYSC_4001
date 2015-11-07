@@ -11,12 +11,12 @@
 
 #include "helper.h"
 
-/*  This function adds a string to the circular buffer.
+/*  This function adds a string to the circular buffer that is stored in shared memory.
 
   @param shared_stuff   This is a pointer to the shared memory used between the consumer and producer.
   @param string         This is a string that will be added to the circular queue.
  */
-void append(struct shared_used_st *shared_stuff, char *string);
+void append(struct shared_used_st *shared_stuff, char *string, int count);
 
 // Main program start.
 int main(int argc, char *argv[])
@@ -68,24 +68,34 @@ int main(int argc, char *argv[])
     exit(EXIT_FAILURE);
   }
 
+  // Read a file until it is empty. Each line is added to the circular buffer.
+  char file_name[TEXT_SZ];
+  printf("Enter the name of the file to append: ");
+  gets(file_name);
 
-  // Implement producer logic here.
-  while(running) {
-    while(shared_stuff->written_by_you == 1) {
-      sleep(1);
-      printf("waiting for client\n");
-    }
-    printf("Enter some text: ");
-    fgets(inbuffer, BUFSIZE, stdin);
+  int input_fd;
+  input_fd = open(file_name, O_RDONLY);
 
-    strncpy(shared_stuff->cbuffer[0].string, inbuffer, TEXT_SZ);
-    shared_stuff->written_by_you = 1;
-
-    if (strncmp(inbuffer, "end", 3) == 0) {
-      running = 0;
-    }
+  if (input_fd == -1) {
+    fprintf(stderr, "Error while opening the file.\n");
+    exit(EXIT_FAILURE);
   }
-  
+
+  struct stat st;
+  stat(file_name, &st);
+  shared_stuff->file_size = st.st_size; // Let the consumer know how big the file is to know when to end.
+
+  int len;
+  char input_buffer[BUFSIZ];
+
+  // Implement producer logic here to add string to the circular buffer..
+  while((len = read(input_fd, &input_buffer, BUFSIZ)) != -1) {
+    semaphore_w(sem_id_e);                      // Check if there is space left to append on the circular buffer.
+    semaphore_w(sem_id_s);                      // Lock the circular buffer.
+    append(shared_stuff, input_buffer, len);    // Add string to the circular buffer and the length of the string.
+    semaphore_s(sem_id_s);                      // Unlock the circular buffer.
+    semaphore_s(sem_id_n);                      // Let the consumer know there is an item avaiable.
+  }
 
   // Detach the shared memory from the current process.
   if (shmdt(shared_memory) == -1) {
@@ -104,8 +114,9 @@ int main(int argc, char *argv[])
   return 0;
 }
 
-void append(struct shared_used_st *shared_stuff, char *string)
+void append(struct shared_used_st *shared_stuff, char *string, int count)
 {
-  memcpy(shared_stuff->cbuffer[shared_stuff->in].string, string, BUFSIZE);
-  shared_stuff->in = (shared_stuff->in +1) % CBUFFER_SZ;
+  memcpy(shared_stuff->cbuffer[shared_stuff->in].string, string, BUFSIZE);  // Copy the string to the circular buffer.
+  shared_stuff->cbuffer[shared_stuff->in].count = len;                      // Add the length of the string to the buffer.
+  shared_stuff->in = (shared_stuff->in +1) % CBUFFER_SZ;                    // Update the next append index.
 }

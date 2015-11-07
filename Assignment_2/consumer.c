@@ -48,11 +48,12 @@ int main(int argc, char *argv[])
   shared_stuff->written_by_you = 0;
   shared_stuff->in = shared_stuff->out = 0;
 
-  // Create semaphores onto the shared memory.
+  // Create/get semaphores on the shared memory.
   sem_id_s = semget((key_t)1231, 1, 0666 | IPC_CREAT);
   sem_id_n = semget((key_t)1232, 1, 0666 | IPC_CREAT);
   sem_id_e = semget((key_t)1233, 1, 0666 | IPC_CREAT);
 
+/*
   // Initialize semaphores S, N, E.
   if (!set_semvalue(sem_id_s, 1)) {
     fprintf(stderr, "Failed to initialize semaphore.\n");
@@ -68,7 +69,8 @@ int main(int argc, char *argv[])
     fprintf(stderr, "Failed to initialize semaphore.\n");
     exit(EXIT_FAILURE);
   }
-
+*/
+  
   // Implement consumer logic here.
   while(running) {
     if (shared_stuff->written_by_you) {
