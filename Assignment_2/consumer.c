@@ -11,7 +11,14 @@
 
 #include "helper.h"
 
+/*  This function 'pops' a string from the circular buffer that is stored in shared memory.
 
+  @param shared_stuff   This is a pointer to the shared memory used between the consumer and producer.
+  @return char*         A pointer to the string that is 'removed' from the circular queue.
+ */
+char *take(struct shared_used_st *shared_stuff);
+
+// Main program start.
 int main(int argc, char *argv[])
 {
   // Variables.
@@ -39,6 +46,7 @@ int main(int argc, char *argv[])
   printf("Memory attached at %X\n", (int)shared_memory);
   shared_stuff = (struct shared_used_st *)shared_memory;
   shared_stuff->written_by_you = 0;
+  shared_stuff->in = shared_stuff->out = 0;
 
   // Create semaphores onto the shared memory.
   sem_id_s = semget((key_t)1231, 1, 0666 | IPC_CREAT);
@@ -67,7 +75,7 @@ int main(int argc, char *argv[])
       printf("From producer: %s", shared_stuff->cbuffer[0].string);
       sleep(rand() % 4); // make the other process wait for us
       shared_stuff->written_by_you = 0;
-      if (strncmp(shared_stuff->cbuffer[0].stringm, "end", 3) == 0) {
+      if (strncmp(shared_stuff->cbuffer[0].string, "end", 3) == 0) {
         running = 0;
       }
     }
@@ -88,4 +96,11 @@ int main(int argc, char *argv[])
 */
 
   return 0;
+}
+
+char *take(struct shared_used_st *shared_stuff)
+{
+  char *temp = shared_stuff->cbuffer[shared_stuff->out].string;
+  shared_stuff->out = (shared_stuff->out + 1) % CBUFFER_SZ;
+  return temp;
 }

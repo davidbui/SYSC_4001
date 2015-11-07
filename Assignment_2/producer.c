@@ -11,6 +11,13 @@
 
 #include "helper.h"
 
+/*  This function adds a string to the circular buffer.
+
+  @param shared_stuff   This is a pointer to the shared memory used between the consumer and producer.
+  @param string         This is a string that will be added to the circular queue.
+ */
+void append(struct shared_used_st *shared_stuff, char *string);
+
 // Main program start.
 int main(int argc, char *argv[])
 {
@@ -95,4 +102,10 @@ int main(int argc, char *argv[])
 */
 
   return 0;
+}
+
+void append(struct shared_used_st *shared_stuff, char *string)
+{
+  memcpy(shared_stuff->cbuffer[shared_stuff->in].string, string, BUFSIZE);
+  shared_stuff->in = (shared_stuff->in +1) % CBUFFER_SZ;
 }

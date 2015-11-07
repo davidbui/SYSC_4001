@@ -25,6 +25,8 @@ typedef struct _buffer {
 
 struct shared_used_st {
   int written_by_you;
+  int in;
+  int out;
   buffer cbuffer[CBUFFER_SZ];
 };
 
