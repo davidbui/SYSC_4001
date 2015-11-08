@@ -34,6 +34,7 @@ How to use
 
 6. That's it! Observe the last few lines of each of the programs to get an overview of the results.
 
+Note: If you want to view the new file created. You may need to enable permissions via chmod to view it.
 
 B. Verification of the PC problem without semaphore S.
 
@@ -41,4 +42,66 @@ In the producer / consumer progam, comment out the semaphore S. The program stil
 
 
 C. Bonus (20%)
+
+Consumer times:
+
+Algorithm: WITH semaphores
+
+Test #1:
+Number of buffers: 100
+Buffer size:       128 bytes
+File size:         18491 bytes
+TIME: 7ms
+
+Test #2:
+Number of buffers: 200
+Buffer size:       128 bytes
+File size:         18491 bytes
+TIME: 3.1ms
+
+Test #3:
+Number of buffers: 100
+Buffer size:       256 bytes
+File size:         18491 bytes
+TIME: 4.7ms
+
+Test #4:
+Number of buffers: 100
+Buffer size:       128 bytes
+File size:         221903 bytes
+TIME: 77.6ms
+
+Algorithm: WITHOUT semaphores
+
+Test #1:
+Number of buffers: 100
+Buffer size:       128 bytes
+File size:         18491 bytes
+TIME: 5.4ms
+
+Test #2:
+Number of buffers: 200
+Buffer size:       128 bytes
+File size:         18491 bytes
+TIME: 2.95ms
+
+Test #3:
+Number of buffers: 100
+Buffer size:       256 bytes
+File size:         18491 bytes
+TIME: 3.5ms
+
+Test #4:
+Number of buffers: 100
+Buffer size:       128 bytes
+File size:         221903 bytes
+TIME: 38.5
+
+
+SUMMARY OF RESULTS
+
+- The algorithm without semaphores performs better
+- Increasing the number of buffers increases performance
+- Increasing buffer size decreases performance
+- Inreasing file size decreases performance
 
