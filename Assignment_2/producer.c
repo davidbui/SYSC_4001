@@ -94,10 +94,12 @@ int main(int argc, char *argv[])
     do {
       fprintf(stderr, "p_wait(e)\n");
       p_wait(sem_id_e);                   // Check if there is space left to append on the circular buffer.
-      //fprintf(stderr, "p_wait(s)\n");
-      //p_wait(sem_id_s);                   // Lock the circular buffer.
+      
+      // Comment out the next 2 lines for B. verification
+      fprintf(stderr, "p_wait(s)\n");
+      p_wait(sem_id_s);                   // Lock the circular buffer.
+      
       fprintf(stderr, "append()\n");
-
       if (in_length > 128) {
         append(shared_stuff, input_buffer + (i*128), BUFSIZE);    // Add string to the circular buffer and the length of the string.
         fprintf(stderr, "Bytes written to circular buffer in shared memory: %d bytes\n", BUFSIZE);
@@ -111,8 +113,10 @@ int main(int argc, char *argv[])
       i++;
       in_length = in_length-128;
 
-      //fprintf(stderr, "p_signal(s)\n");
-      //p_signal(sem_id_s);                // Unlock the circular buffer.
+      // Comment out the next 2 lines for B. verification
+      fprintf(stderr, "p_signal(s)\n");
+      p_signal(sem_id_s);                // Unlock the circular buffer.
+
       fprintf(stderr, "p_signal(n)\n\n");
       p_signal(sem_id_n);                // Let the consumer know there is an item avaiable.
     } while(in_length > 0);

@@ -70,14 +70,16 @@ int main(int argc, char *argv[])
     fprintf(stderr, "p_wait(n)\n");
     p_wait(sem_id_n);  // Check if there is an item to consume from the buffer in shared memory.
 
-    //fprintf(stderr, "p_wait(s)\n");
-    //p_wait(sem_id_s);  // Check if buffer is being accessed. If not, lock it.
+    // Comment out the next 2 lines for B. verification
+    fprintf(stderr, "p_wait(s)\n");
+    p_wait(sem_id_s);  // Check if buffer is being accessed. If not, lock it.
 
     fprintf(stderr, "take()\n");
     out_string = take(shared_stuff, output_fd);
 
-    //fprintf(stderr, "p_signal(s)\n");
-    //p_signal(sem_id_s);  // Unlock buffer access.
+    // Comment out the next 2 lines for B. verification
+    fprintf(stderr, "p_signal(s)\n");
+    p_signal(sem_id_s);  // Unlock buffer access.
 
     fprintf(stderr, "p_signal(e)\n");
     p_signal(sem_id_e);  // Add 1 free space to buffer.

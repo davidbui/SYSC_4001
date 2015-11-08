@@ -1,1 +1,41 @@
-Implement the finite circular buffer for the producer/consumer problem (PC) by using Unix/Linux shared memory and semaphores
+#Assignment #2
+
+## Implement a finite circular buffer for the producer/consumer problem (PC) by using Unix/Linux shared memory and semaphores.
+
+## Files
+* producer.c
+  * This is the producer that will read a file and produce items onto the circular buffer on the shared memory.
+* consumer.c
+  * This is the producer that will consume items on the circular buffer on the shared memory and will create a new file with the items consumed.
+* helper.c
+  * Implementations of the semaphore functions.
+* helper.h
+  * Function prototypes of the semaphore functions and structs used by both producer and consumer.
+* test.txt
+  * This is an example text file that can be used for testing the producer and consumer progam.
+* MakeFile
+  * Make file to compile the source code.
+
+## How to use
+
+1. Compile the source code by typine "make".
+2. Run the producer:
+  ./producer
+
+3. The producer program will ask for a file name to read. An example file "test.txt" is provided.
+4. Run the consumer:
+  ./consumer
+
+5. The consumer program will ask for a file name to create the new file that will be created from consuming items. 
+  An example name: "new_test.txt"
+
+6. That's it! Observe the last few lines of each of the programs to get an overview of the results.
+
+
+## B. Verification of the PC problem without semaphore S.
+
+In the producer / consumer progam, comment out the semaphore S. The program still works when there is only 1 consumer and 1 producer.
+
+
+## C. Bonus (20%)
+
