@@ -1,6 +1,5 @@
 #include "helper.h"
 
-
 // Semaphore function prototypes.
 int set_semvalue(int sem_id, int init_value)
 {
@@ -23,7 +22,7 @@ void del_semvalue(int sem_id)
   }
 }
 
-int semaphore_w(int sem_id)
+int p_wait(int sem_id)
 {
   struct sembuf sem_b;
 
@@ -38,7 +37,7 @@ int semaphore_w(int sem_id)
   return 1;
 }
 
-int semaphore_s(int sem_id)
+int p_signal(int sem_id)
 {
   struct sembuf sem_b;
 

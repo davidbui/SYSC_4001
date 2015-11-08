@@ -43,7 +43,7 @@ int sem_id_e; // Synchronize producer and consumer on the number of empty spaces
 // Semaphore function prototypes.
 int set_semvalue(int sem_id, int init_value);
 void del_semvalue(int sem_id);
-int semaphore_w(int sem_id);
-int semaphore_s(int sem_id);
+int p_wait(int sem_id);
+int p_signal(int sem_id);
 
 #endif
