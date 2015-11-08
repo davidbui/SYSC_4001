@@ -6,7 +6,7 @@ int set_semvalue(int sem_id, int init_value)
 {
   union semun sem_union;
 
-  sem_union.val = 1;
+  sem_union.val = init_value;
   if (semctl(sem_id, 0, SETVAL, sem_union) == -1) {
     return 0;
   }
@@ -29,7 +29,7 @@ int semaphore_w(int sem_id)
 
   sem_b.sem_num = 0;
   sem_b.sem_op = -1; 
-  sem_b.sem_flg = SEM_UNDO;
+  sem_b.sem_flg = 0;
 
   if (semop(sem_id, &sem_b, 1) == -1) {
     fprintf(stderr, "semaphore_w failed.\n");
@@ -44,7 +44,7 @@ int semaphore_s(int sem_id)
 
   sem_b.sem_num = 0;
   sem_b.sem_op = 1; 
-  sem_b.sem_flg = SEM_UNDO;
+  sem_b.sem_flg = 0;
 
   if (semop(sem_id, &sem_b, 1) == -1) {
     fprintf(stderr, "semaphore_s failed.\n");

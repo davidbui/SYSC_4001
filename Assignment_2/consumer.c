@@ -17,12 +17,12 @@
   @return char*         A pointer to the string that is 'removed' from the circular queue.
  */
 char *take(struct shared_used_st *shared_stuff);
+int bytes_read = 0;
 
 // Main program start.
 int main(int argc, char *argv[])
 {
   // Variables.
-  int running = 1;
   void *shared_memory = (void *) 0;
   struct shared_used_st *shared_stuff;
   int shmid;
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
   srand((unsigned int)getpid());
 
   // Create a shared memory.
-  shmid = shmget((key_t)1234, sizeof(struct shared_used_st), 0666 | IPC_CREAT);
+  shmid = shmget((key_t)SHM_ID, sizeof(struct shared_used_st), 0666 | IPC_CREAT);
   if (shmid == -1) {
     fprintf(stderr, "shmget failed.\n");
     exit(EXIT_FAILURE);
@@ -49,9 +49,9 @@ int main(int argc, char *argv[])
   shared_stuff->in = shared_stuff->out = 0;
 
   // Create/get semaphores on the shared memory.
-  sem_id_s = semget((key_t)1231, 1, 0666 | IPC_CREAT);
-  sem_id_n = semget((key_t)1232, 1, 0666 | IPC_CREAT);
-  sem_id_e = semget((key_t)1233, 1, 0666 | IPC_CREAT);
+  sem_id_s = semget((key_t)SEM_ID_S, 1, 0666 | IPC_CREAT);
+  sem_id_n = semget((key_t)SEM_ID_N, 1, 0666 | IPC_CREAT);
+  sem_id_e = semget((key_t)SEM_ID_E, 1, 0666 | IPC_CREAT);
 
 /*
   // Initialize semaphores S, N, E.
@@ -70,39 +70,55 @@ int main(int argc, char *argv[])
     exit(EXIT_FAILURE);
   }
 */
-  
+
+  int file_size = shared_stuff->file_size;
+  char *s;
+
   // Implement consumer logic here.
-  while(running) {
-    if (shared_stuff->written_by_you) {
-      printf("From producer: %s", shared_stuff->cbuffer[0].string);
-      sleep(rand() % 4); // make the other process wait for us
-      shared_stuff->written_by_you = 0;
-      if (strncmp(shared_stuff->cbuffer[0].string, "end", 3) == 0) {
-        running = 0;
-      }
-    }
+  while(bytes_read < file_size) {
+    fprintf(stderr, "bytes read = %d\n", bytes_read);
+
+    fprintf(stderr, "wait(n)\n");
+    semaphore_w(sem_id_n);  // Check if there is an item to consume from the buffer in shared memory.
+
+    fprintf(stderr, "wait(s)\n");
+    semaphore_w(sem_id_s);  // Check if buffer is being accessed. If not, lock it.
+
+    fprintf(stderr, "take()\n");
+    s = take(shared_stuff);
+
+
+    fprintf(stderr, "signal(s)\n");
+    semaphore_s(sem_id_s);  // Unlock buffer access.
+
+    fprintf(stderr, "signal(e)\n");
+    semaphore_s(sem_id_e);  // Add 1 free space to buffer.
+    fprintf(stderr, "bytes read = %d\n", bytes_read);
+    printf("Received message from producer:\n'%s'\n\n", s);
   }
   
+  fprintf(stderr, "Finished consuming file from shared memory.\n");
   // Detach the shared memory from the current process.
   if (shmdt(shared_memory) == -1) {
     fprintf(stderr, "shmdt failed.\n");
     exit(EXIT_FAILURE);
   }
 
-/*
- * Deletes the shared memory
+  //Deletes the shared memory
   if (shmctl(shmid, IPC_RMID, 0) == -1) {
     fprintf(stderr, "shmctl(IPC_RMID) failed.\n");
     exit(EXIT_FAILURE);
   }
-*/
 
   return 0;
 }
 
 char *take(struct shared_used_st *shared_stuff)
 {
+  fprintf(stderr, "before shared_stuff->out = %d\n", shared_stuff->out);
   char *temp = shared_stuff->cbuffer[shared_stuff->out].string;
+  bytes_read +=shared_stuff->cbuffer[shared_stuff->out].length;
   shared_stuff->out = (shared_stuff->out + 1) % CBUFFER_SZ;
+  fprintf(stderr, "before shared_stuff->out = %d\n", shared_stuff->out);
   return temp;
 }

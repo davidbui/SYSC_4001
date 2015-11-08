@@ -12,17 +12,19 @@
 #include <fcntl.h>    // open().
 
 // Constants.
-#define CBUFFER_SZ 100
-#define BUFSIZE 128
-#define TEXT_SZ 25
-#define SEM_ID_S 1234
-#define SEM_ID_N 1235
-#define SEM_ID_E 1236
+#define CBUFFER_SZ  100
+#define BUFSIZE     128
+#define TEXT_SZ     25
+
+#define SHM_ID      9231
+#define SEM_ID_S    9123
+#define SEM_ID_N    9122
+#define SEM_ID_E    9451
 
 // Structs.
 typedef struct _buffer {
   char string[BUFSIZE];
-  int count;
+  int length;
 } buffer;
 
 struct shared_used_st {
