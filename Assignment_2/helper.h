@@ -16,10 +16,10 @@
 #define BUFSIZE     128
 #define TEXT_SZ     25
 
-#define SHM_ID      9231
-#define SEM_ID_S    9123
-#define SEM_ID_N    9122
-#define SEM_ID_E    9451
+#define SHM_ID      2981
+#define SEM_ID_S    2982
+#define SEM_ID_N    2983
+#define SEM_ID_E    2984
 
 // Structs.
 typedef struct _buffer {

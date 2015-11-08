@@ -87,38 +87,39 @@ int main(int argc, char *argv[])
 
   // Implement producer logic here to add string to the circular buffer..
   while((in_length = read(input_fd, &input_buffer, sizeof(input_buffer))) > 0) {
-    fprintf(stderr, "in_length = %d\n", in_length);
+    fprintf(stderr, "Num bytes read = %d\n", in_length);
     i = 0;
 
     // Includes logic that splits up the 1024 byte sized input into pieces of 128.
     do {
       fprintf(stderr, "p_wait(e)\n");
       p_wait(sem_id_e);                   // Check if there is space left to append on the circular buffer.
-      fprintf(stderr, "p_wait(s)\n");
-      p_wait(sem_id_s);                   // Lock the circular buffer.
+      //fprintf(stderr, "p_wait(s)\n");
+      //p_wait(sem_id_s);                   // Lock the circular buffer.
       fprintf(stderr, "append()\n");
 
       if (in_length > 128) {
         append(shared_stuff, input_buffer + (i*128), BUFSIZE);    // Add string to the circular buffer and the length of the string.
-        fprintf(stderr, "Bytes written to circular buffer in shared memory: %d\n", BUFSIZE);
+        fprintf(stderr, "Bytes written to circular buffer in shared memory: %d bytes\n", BUFSIZE);
         total_write_size+=128;
       } else {
         append(shared_stuff, input_buffer + (i*128), in_length); 
-        fprintf(stderr, "Bytes written to circular buffer in shared memory: %d\n", in_length);
+        fprintf(stderr, "Bytes written to circular buffer in shared memory: %d bytes\n", in_length);
         total_write_size+=in_length;
       }
 
       i++;
       in_length = in_length-128;
 
-      fprintf(stderr, "p_signal(s)\n");
-      p_signal(sem_id_s);                // Unlock the circular buffer.
+      //fprintf(stderr, "p_signal(s)\n");
+      //p_signal(sem_id_s);                // Unlock the circular buffer.
       fprintf(stderr, "p_signal(n)\n\n");
       p_signal(sem_id_n);                // Let the consumer know there is an item avaiable.
     } while(in_length > 0);
   }
 
   fprintf(stderr, "Finished producing file to shared memory.\n");
+  close(input_fd);
 
   // Detach the shared memory from the current process.
   if (shmdt(shared_memory) == -1) {
@@ -132,9 +133,8 @@ int main(int argc, char *argv[])
 
 void append(struct shared_used_st *shared_stuff, char *string, int length)
 {
-  fprintf(stderr, "before shared_stuff->in = %d\n", shared_stuff->in);
+  fprintf(stderr, "Current in index = %d\n", shared_stuff->in);
   memcpy(shared_stuff->cbuffer[shared_stuff->in].string, string, BUFSIZE);  // Copy the string to the circular buffer.
   shared_stuff->cbuffer[shared_stuff->in].length = length;                  // Add the length of the string to the buffer.
   shared_stuff->in = (shared_stuff->in +1) % CBUFFER_SZ;                    // Update the next append index.
-  fprintf(stderr, "after shared_stuff->in = %d\n", shared_stuff->in);
 }
