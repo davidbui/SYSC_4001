@@ -1,5 +1,6 @@
 Assignment #3
 
+The objective of assignment 3 is to emulate a simplifed scheduling policy based on Linux Completely Fair Scheduler (CFS) using threads.
 
 Files
 
