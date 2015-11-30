@@ -1,8 +1,8 @@
-CC=gcc
-CFLAGS=-I.
+CFLAGS=-D_REENTRANT
+LDFLAGS=-lpthread
 
-assign3: main.c
-	$(CC) -o main main.c $(CFLAGS)
+assign3: main.c helper.c
+	$(CC) -o main main.c helper.c $(CFLAGS)
 
 c:
 	rm -rf *.o main
