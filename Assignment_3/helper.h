@@ -12,18 +12,11 @@
 #include <fcntl.h>    // open().
 
 // Constants.
-#define CBUFFER_SZ  100
-#define BUFSIZE     128
-#define TEXT_SZ     25
-
-#define SHM_ID      2981
-#define SEM_ID_S    2982
-#define SEM_ID_N    2983
-#define SEM_ID_E    2984
+#define QUEUE_SZ  100
 
 // Structs.
 // Process information created by the producer.
-struct _p_info {
+struct _process_info {
   int pid;
   int static_prio;      // Static priority: The default static priority is 120, even for real-time processes. Priorities 0-99 are for real-time processes and 100-139 are for normal processes. Lower values represent higher priority levels.
   int prio;             // Dynamic priority: the dynamic priority is calculated as a function of the static priority and the task’s interactivity.
@@ -31,17 +24,26 @@ struct _p_info {
   int time_slice;
   int accu_time_slice;  // Accumulated time slice.
   int last_cpu;         // The CPU (thread) that the process last ran.
-} p_info;
+};
 
-// Global variables.
-int sem_id_s; // Provides mutual exclusion on buffer access.
-int sem_id_n; // Synchronize producer and consumer on the number of consumable items.
-int sem_id_e; // Synchronize producer and consumer on the number of empty spaces.
+// A queue that holds processes.
+struct _queue {
+  int in;
+  int out;
+  int size;
+  struct _process_info processes[QUEUE_SZ];
+};
 
-// Semaphore function prototypes.
-int set_semvalue(int sem_id, int init_value);
-void del_semvalue(int sem_id);
-int p_wait(int sem_id);
-int p_signal(int sem_id);
+// Initialize the queue with processes.
+void init_queue(struct _queue *queue);
+
+// Adds a process to the queue of processes.
+void append(struct _process_info *process, struct _queue *queue);
+
+// Consumes the highest priority process from the queue.
+struct _process_info *take(struct _queue *queue);
+
+// Re-orders a queue according to priority.
+void reorder(struct _queue *queue);
 
 #endif

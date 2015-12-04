@@ -1,53 +1,28 @@
 #include "helper.h"
 
-// Semaphore function prototypes.
-int set_semvalue(int sem_id, int init_value)
+// Initialize the queue with processes.
+void init_queue(struct _queue *queue)
 {
-  union semun sem_union;
-
-  sem_union.val = init_value;
-  if (semctl(sem_id, 0, SETVAL, sem_union) == -1) {
-    return 0;
-  }
-  return 1;
+  queue->in = 0;
+  queue->out = 0;
+  queue->size = QUEUE_SZ;
 }
 
-void del_semvalue(int sem_id)
+// Adds a process to the queue of processes, and then re-orders them according to priority.
+void append(struct _process_info *process, struct _queue *queue)
 {
-  union semun sem_union;
-
-  sem_union.val = 1;
-  if (semctl(sem_id, 0, IPC_RMID, sem_union) == -1) {
-    fprintf(stderr, "Failed to delete semaphore.\n");
-  }
+  queue->processes[queue->in] = *process;
+  queue->in = (queue->in +1) % queue->size;
+  reorder(queue);
 }
 
-int p_wait(int sem_id)
+// Consumes the highest priority process from the queue.
+struct _process_info *take(struct _queue *queue)
 {
-  struct sembuf sem_b;
-
-  sem_b.sem_num = 0;
-  sem_b.sem_op = -1; 
-  sem_b.sem_flg = 0;
-
-  if (semop(sem_id, &sem_b, 1) == -1) {
-    fprintf(stderr, "semaphore_w failed.\n");
-    return 0;
-  }
-  return 1;
+  struct _process_info *p = (struct _process_info*)malloc(sizeof(struct _process_info));
+  return p;
 }
-
-int p_signal(int sem_id)
+void reorder(struct _queue *queue)
 {
-  struct sembuf sem_b;
 
-  sem_b.sem_num = 0;
-  sem_b.sem_op = 1; 
-  sem_b.sem_flg = 0;
-
-  if (semop(sem_id, &sem_b, 1) == -1) {
-    fprintf(stderr, "semaphore_s failed.\n");
-    return 0;
-  }
-  return 1;
 }
