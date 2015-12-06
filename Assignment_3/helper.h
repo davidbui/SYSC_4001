@@ -24,6 +24,7 @@ struct _process_info {
   int time_slice;
   int accu_time_slice;  // Accumulated time slice.
   int last_cpu;         // The CPU (thread) that the process last ran.
+  char sched[13];       // SCHED_FIFO/SCHED_RR/SCHED_NORMAL
 };
 
 // A queue that holds processes.
@@ -31,7 +32,7 @@ struct _queue {
   int in;
   int out;
   int size;
-  struct _process_info processes[QUEUE_SZ];
+  struct _process_info *processes[QUEUE_SZ];
 };
 
 // Initialize the queue with processes.
