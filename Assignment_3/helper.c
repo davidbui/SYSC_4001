@@ -16,12 +16,16 @@ void append(struct _process_info *process, struct _queue *queue)
   reorder(queue);
 }
 
-// Consumes the highest priority process from the queue.
+// Consumes the highest priority process from the queue. Returns null if empty.
 struct _process_info *take(struct _queue *queue)
 {
-  struct _process_info *p = queue->processes[queue->out];
-  queue->out = (queue->out+1)%queue->size;
-  return p;
+  if (queue->in == queue->out) {
+    return NULL;
+  } else {
+    struct _process_info *p = queue->processes[queue->out];
+    queue->out = (queue->out+1)%queue->size;
+    return p;
+ }
 }
 
 // Reorders a queue with the highest priorty placed in the front of the queue.

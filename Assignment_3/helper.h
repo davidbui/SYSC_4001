@@ -25,6 +25,7 @@ struct _process_info {
   int accu_time_slice;  // Accumulated time slice.
   int last_cpu;         // The CPU (thread) that the process last ran.
   char sched[13];       // SCHED_FIFO/SCHED_RR/SCHED_NORMAL
+  int sleep_avg;
 };
 
 // A queue that holds processes.
@@ -41,7 +42,7 @@ void init_queue(struct _queue *queue);
 // Adds a process to the queue of processes.
 void append(struct _process_info *process, struct _queue *queue);
 
-// Consumes the highest priority process from the queue.
+// Consumes the highest priority process from the queue. Returns null if empty.
 struct _process_info *take(struct _queue *queue);
 
 // Re-orders a queue according to priority.

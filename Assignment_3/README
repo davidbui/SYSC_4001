@@ -11,4 +11,8 @@ How to use
 
 1. Compile the source code by typine "make".
 
-2.
+2. Run main 
+  ./main
+
+
+Thats it!

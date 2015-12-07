@@ -1,0 +1,318 @@
+00         | 1160       | 0               | SCHED_FIFO  
+7   | 3   | 3        | 70          | 70   | 3000         | 1400       | 0               | SCHED_RR    
+19  | 3   | 3        | 136         | 136  | 200          | 20         | 0               | SCHED_NORMAL
+15  | 3   | 3        | 133         | 133  | 5200         | 35         | 0               | SCHED_NORMAL
+11  | 3   | 3        | 132         | 132  | 80           | 40         | 0               | SCHED_NORMAL
+This is the balancer!!
+Balanced cpu queues.
+CPU 0 started.
+CPU 0: Process PID 8 (SCHED_RR) is running, time slice allocated = 1480ms, Execution time left = 6500.
+Balanced cpu queues.
+CPU 1 started.
+CPU 1: Process PID 1 (SCHED_FIFO) is running, time slice allocated = 300ms.
+CPU 1: Process with PID 1 finished!
+CPU 1: Process PID 5 (SCHED_RR) is running, time slice allocated = 2640ms, Execution time left = 3200.
+CPU 0: Adding process with PID 8 back to RQ0.
+CPU 0: Process PID 8 (SCHED_RR) is running, time slice allocated = 1480ms, Execution time left = 5020.
+Balanced cpu queues.
+CPU 2 started.
+CPU 2: Process PID 6 (SCHED_RR) is running, time slice allocated = 820ms, Execution time left = 3500.
+CPU 2: Adding process with PID 6 back to RQ0.
+CPU 2: Process PID 6 (SCHED_RR) is running, time slice allocated = 820ms, Execution time left = 2680.
+CPU 0: Adding process with PID 8 back to RQ0.
+CPU 0: Process PID 8 (SCHED_RR) is running, time slice allocated = 1480ms, Execution time left = 3540.
+Balanced cpu queues.
+CPU 3 started.
+CPU 3: Process PID 3 (SCHED_FIFO) is running, time slice allocated = 5000ms.
+CPU 2: Adding process with PID 6 back to RQ0.
+CPU 2: Process PID 6 (SCHED_RR) is running, time slice allocated = 820ms, Execution time left = 1860.
+CPU 1: Adding process with PID 5 back to RQ0.
+CPU 1: Process PID 5 (SCHED_RR) is running, time slice allocated = 2640ms, Execution time left = 560.
+
+Waiting for consumer thread to finish...
+Balanced cpu queues.
+CPU 0: Adding process with PID 8 back to RQ0.
+CPU 0: Process PID 8 (SCHED_RR) is running, time slice allocated = 1480ms, Execution time left = 2060.
+CPU 2: Adding process with PID 6 back to RQ0.
+CPU 2: Process PID 6 (SCHED_RR) is running, time slice allocated = 820ms, Execution time left = 1040.
+Balanced cpu queues.
+CPU 2: Adding process with PID 6 back to RQ0.
+CPU 2: Process PID 6 (SCHED_RR) is running, time slice allocated = 820ms, Execution time left = 220.
+CPU 0: Adding process with PID 8 back to RQ0.
+CPU 0: Process PID 8 (SCHED_RR) is running, time slice allocated = 1480ms, Execution time left = 580.
+Balanced cpu queues.
+CPU 2: Process with PID 6 finished!
+CPU 2: Process PID 2 (SCHED_FIFO) is running, time slice allocated = 4000ms.
+CPU 1: Process with PID 5 finished!
+CPU 1: Process PID 13 (SCHED_NORMAL) is running, time slice allocated = 50ms, Execution time left = 500.
+CPU 1: Process PID 13 (SCHED NORMAL IS CHANGED!), new priority = 135, previous priority = 130.
+CPU 1: Process PID 13 placed into RQ2
+CPU 1: Process PID 17 (SCHED_NORMAL) is running, time slice allocated = 75ms, Execution time left = 180.
+CPU 1: Process PID 17 placed into RQ1
+CPU 1: Process PID 17 (SCHED_NORMAL) is running, time slice allocated = 75ms, Execution time left = 105.
+CPU 1: Process PID 17 (SCHED NORMAL IS CHANGED!), new priority = 130, previous priority = 125.
+CPU 1: Process PID 17 placed into RQ2
+CPU 1: Process PID 9 (SCHED_NORMAL) is running, time slice allocated = 800ms, Execution time left = 1600.
+Balanced cpu queues.
+CPU 0: Process with PID 8 finished!
+CPU 0: Process PID 4 (SCHED_FIFO) is running, time slice allocated = 3000ms.
+CPU 1: Process PID 9 (SCHED NORMAL IS CHANGED!), new priority = 105, previous priority = 100.
+CPU 1: Process PID 9 placed into RQ1
+CPU 1: Process PID 9 (SCHED_NORMAL) is running, time slice allocated = 800ms, Execution time left = 800.
+CPU 3: Process with PID 3 finished!
+CPU 3: Process PID 7 (SCHED_RR) is running, time slice allocated = 1400ms, Execution time left = 3000.
+Balanced cpu queues.
+CPU 1: Process with PID 9 finished!
+CPU 1: Process PID 13 (SCHED_NORMAL) is running, time slice allocated = 50ms, Execution time left = 450.
+CPU 1: Process PID 13 placed into RQ2
+CPU 1: Process PID 13 (SCHED_NORMAL) is running, time slice allocated = 50ms, Execution time left = 400.
+CPU 1: Process PID 13 (SCHED NORMAL IS CHANGED!), new priority = 139, previous priority = 135.
+CPU 1: Process PID 13 placed into RQ2
+CPU 1: Process PID 13 (SCHED_NORMAL) is running, time slice allocated = 50ms, Execution time left = 350.
+CPU 1: Process PID 13 placed into RQ2
+CPU 1: Process PID 13 (SCHED_NORMAL) is running, time slice allocated = 50ms, Execution time left = 300.
+CPU 1: Process PID 13 placed into RQ2
+CPU 1: Process PID 13 (SCHED_NORMAL) is running, time slice allocated = 50ms, Execution time left = 250.
+CPU 1: Process PID 13 placed into RQ2
+CPU 1: Process PID 13 (SCHED_NORMAL) is running, time slice allocated = 50ms, Execution time left = 200.
+CPU 1: Process PID 13 placed into RQ2
+CPU 1: Process PID 13 (SCHED_NORMAL) is running, time slice allocated = 50ms, Execution time left = 150.
+CPU 1: Process PID 13 placed into RQ2
+CPU 1: Process PID 13 (SCHED_NORMAL) is running, time slice allocated = 50ms, Execution time left = 100.
+CPU 1: Process PID 13 placed into RQ2
+CPU 1: Process PID 13 (SCHED_NORMAL) is running, time slice allocated = 50ms, Execution time left = 50.
+CPU 1: Process with PID 13 finished!
+CPU 1: Process PID 17 (SCHED_NORMAL) is running, time slice allocated = 75ms, Execution time left = 30.
+CPU 1: Process with PID 17 finished!
+Balanced cpu queues.
+CPU 3: Adding process with PID 7 back to RQ0.
+CPU 3: Process PID 7 (SCHED_RR) is running, time slice allocated = 1400ms, Execution time left = 1600.
+Balanced cpu queues.
+CPU 2: Process with PID 2 finished!
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 2000.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 138, previous priority = 133.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 14 (SCHED_NORMAL) is running, time slice allocated = 95ms, Execution time left = 2600.
+CPU 2: Process PID 14 (SCHED NORMAL IS CHANGED!), new priority = 126, previous priority = 121.
+CPU 2: Process PID 14 placed into RQ1
+CPU 2: Process PID 14 (SCHED_NORMAL) is running, time slice allocated = 95ms, Execution time left = 2505.
+CPU 2: Process PID 14 (SCHED NORMAL IS CHANGED!), new priority = 131, previous priority = 126.
+CPU 2: Process PID 14 placed into RQ2
+CPU 2: Process PID 10 (SCHED_NORMAL) is running, time slice allocated = 100ms, Execution time left = 4500.
+CPU 0: Process with PID 4 finished!
+CPU 0: Process PID 12 (SCHED_NORMAL) is running, time slice allocated = 85ms, Execution time left = 160.
+CPU 2: Process PID 10 (SCHED NORMAL IS CHANGED!), new priority = 125, previous priority = 120.
+CPU 2: Process PID 10 placed into RQ1
+CPU 2: Process PID 10 (SCHED_NORMAL) is running, time slice allocated = 100ms, Execution time left = 4400.
+CPU 0: Process PID 12 (SCHED NORMAL IS CHANGED!), new priority = 128, previous priority = 123.
+CPU 0: Process PID 12 placed into RQ1
+CPU 0: Process PID 12 (SCHED_NORMAL) is running, time slice allocated = 85ms, Execution time left = 75.
+CPU 2: Process PID 10 placed into RQ1
+CPU 2: Process PID 10 (SCHED_NORMAL) is running, time slice allocated = 100ms, Execution time left = 4300.
+CPU 0: Process with PID 12 finished!
+CPU 0: Process PID 20 (SCHED_NORMAL) is running, time slice allocated = 460ms, Execution time left = 700.
+CPU 2: Process PID 10 placed into RQ1
+CPU 2: Process PID 10 (SCHED_NORMAL) is running, time slice allocated = 100ms, Execution time left = 4200.
+CPU 2: Process PID 10 (SCHED NORMAL IS CHANGED!), new priority = 130, previous priority = 125.
+CPU 2: Process PID 10 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1965.
+CPU 3: Adding process with PID 7 back to RQ0.
+CPU 3: Process PID 7 (SCHED_RR) is running, time slice allocated = 1400ms, Execution time left = 200.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 139, previous priority = 138.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1930.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1895.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1860.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1825.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1790.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1755.
+Balanced cpu queues.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1720.
+CPU 0: Process PID 20 (SCHED NORMAL IS CHANGED!), new priority = 122, previous priority = 117.
+CPU 0: Process PID 20 placed into RQ1
+CPU 0: Process PID 20 (SCHED_NORMAL) is running, time slice allocated = 460ms, Execution time left = 240.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 134, previous priority = 139.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1685.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1650.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 139, previous priority = 134.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1615.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 134, previous priority = 139.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1580.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 139, previous priority = 134.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1545.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1510.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1475.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1440.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1405.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1370.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1335.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 134, previous priority = 139.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1300.
+CPU 0: Process with PID 20 finished!
+CPU 0: Process PID 16 (SCHED_NORMAL) is running, time slice allocated = 720ms, Execution time left = 400.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 139, previous priority = 134.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1265.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1230.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1195.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 134, previous priority = 139.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1160.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1125.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1090.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 139, previous priority = 134.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1055.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 134, previous priority = 139.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 1020.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 985.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 139, previous priority = 134.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 950.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 134, previous priority = 139.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 915.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 139, previous priority = 134.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 880.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 845.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 810.
+Balanced cpu queues.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 775.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 740.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 705.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 134, previous priority = 139.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 670.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 635.
+CPU 3: Process with PID 7 finished!
+CPU 3: Process PID 19 (SCHED_NORMAL) is running, time slice allocated = 20ms, Execution time left = 200.
+CPU 3: Process PID 19 (SCHED NORMAL IS CHANGED!), new priority = 139, previous priority = 136.
+CPU 3: Process PID 19 placed into RQ2
+CPU 3: Process PID 15 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 5200.
+CPU 0: Process with PID 16 finished!
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 139, previous priority = 134.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 600.
+CPU 3: Process PID 15 (SCHED NORMAL IS CHANGED!), new priority = 128, previous priority = 133.
+CPU 3: Process PID 15 placed into RQ1
+CPU 3: Process PID 11 (SCHED_NORMAL) is running, time slice allocated = 40ms, Execution time left = 80.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 565.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 530.
+CPU 3: Process PID 11 (SCHED NORMAL IS CHANGED!), new priority = 127, previous priority = 132.
+CPU 3: Process PID 11 placed into RQ1
+CPU 3: Process PID 15 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 5165.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 495.
+CPU 3: Process PID 15 (SCHED NORMAL IS CHANGED!), new priority = 133, previous priority = 128.
+CPU 3: Process PID 15 placed into RQ2
+CPU 3: Process PID 11 (SCHED_NORMAL) is running, time slice allocated = 40ms, Execution time left = 40.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 460.
+CPU 3: Process with PID 11 finished!
+CPU 3: Process PID 19 (SCHED_NORMAL) is running, time slice allocated = 20ms, Execution time left = 180.
+CPU 3: Process PID 19 placed into RQ2
+CPU 3: Process PID 19 (SCHED_NORMAL) is running, time slice allocated = 20ms, Execution time left = 160.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 425.
+CPU 3: Process PID 19 placed into RQ2
+CPU 3: Process PID 19 (SCHED_NORMAL) is running, time slice allocated = 20ms, Execution time left = 140.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 134, previous priority = 139.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 390.
+CPU 3: Process PID 19 placed into RQ2
+CPU 3: Process PID 19 (SCHED_NORMAL) is running, time slice allocated = 20ms, Execution time left = 120.
+CPU 3: Process PID 19 placed into RQ2
+CPU 3: Process PID 19 (SCHED_NORMAL) is running, time slice allocated = 20ms, Execution time left = 100.
+CPU 2: Process PID 18 placed into RQ2
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 355.
+CPU 3: Process PID 19 placed into RQ2
+CPU 3: Process PID 19 (SCHED_NORMAL) is running, time slice allocated = 20ms, Execution time left = 80.
+CPU 3: Process PID 19 placed into RQ2
+CPU 3: Process PID 19 (SCHED_NORMAL) is running, time slice allocated = 20ms, Execution time left = 60.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 129, previous priority = 134.
+CPU 2: Process PID 18 placed into RQ1
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 320.
+CPU 3: Process PID 19 placed into RQ2
+CPU 3: Process PID 19 (SCHED_NORMAL) is running, time slice allocated = 20ms, Execution time left = 40.
+CPU 3: Process PID 19 placed into RQ2
+CPU 3: Process PID 19 (SCHED_NORMAL) is running, time slice allocated = 20ms, Execution time left = 20.
+CPU 2: Process PID 18 placed into RQ1
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 285.
+CPU 3: Process with PID 19 finished!
+CPU 3: Process PID 15 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 5130.
+CPU 2: Process PID 18 placed into RQ1
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 250.
+CPU 3: Process PID 15 placed into RQ2
+CPU 3: Process PID 15 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 5095.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 124, previous priority = 129.
+CPU 2: Process PID 18 placed into RQ1
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 215.
+CPU 3: Process PID 15 (SCHED NORMAL IS CHANGED!), new priority = 138, previous priority = 133.
+CPU 3: Process PID 15 placed into RQ2
+CPU 3: Process PID 15 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 5060.
+CPU 2: Process PID 18 placed into RQ1
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 180.
+CPU 3: Process PID 15 placed into RQ2
+CPU 3: Process PID 15 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 5025.
+CPU 2: Process PID 18 placed into RQ1
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 145.
+CPU 3: Process PID 15 (SCHED NORMAL IS CHANGED!), new priority = 133, previous priority = 138.
+CPU 3: Process PID 15 placed into RQ2
+CPU 3: Process PID 15 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 4990.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 129, previous priority = 124.
+CPU 2: Process PID 18 placed into RQ1
+CPU 2: Process PID 18 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 110.
+CPU 3: Process PID 15 (SCHED NORMAL IS CHANGED!), new priority = 138, previous priority = 133.
+CPU 3: Process PID 15 placed into RQ2
+CPU 3: Process PID 15 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 4955.
+CPU 2: Process PID 18 (SCHED NORMAL IS CHANGED!), new priority = 134, previous priority = 129.
+CPU 2: Process PID 18 placed into RQ2
+CPU 3: Process PID 15 placed into RQ2
+CPU 3: Process PID 15 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 4920.
+CPU 3: Process PID 15 (SCHED NORMAL IS CHANGED!), new priority = 139, previous priority = 138.
+CPU 3: Process PID 15 placed into RQ2
+CPU 3: Process PID 15 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 4885.
+CPU 3: Process PID 15 placed into RQ2
+CPU 3: Process PID 15 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 4850.
+CPU 3: Process PID 15 (SCHED NORMAL IS CHANGED!), new priority = 134, previous priority = 139.
+CPU 3: Process PID 15 placed into RQ2
+CPU 3: Process PID 15 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 4815.
+CPU 3: Process PID 15 (SCHED NORMAL IS CHANGED!), new priority = 129, previous priority = 134.
+CPU 3: Process PID 15 placed into RQ1
+CPU 3: Process PID 15 (SCHED_NORMAL) is running, time slice allocated = 35ms, Execution time left = 4780.
+CPU 3: Process PID 15 (SCHED NORMAL IS CHANGED!), new priority = 134, previous priority = 129.
+CPU 3: Process PID 15 placed into RQ2
+Balanced cpu queues.
